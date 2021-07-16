@@ -15,12 +15,16 @@ from bson.objectid import ObjectId
 import re
 import calendar
 import time
+import os
 
 #loading config
-with open('base.cfg') as file:
-    passwd=file.readline().strip()
-with open('secret.cfg') as file:
-    secret=file.readline()
+#with open('base.cfg') as file:
+#    passwd=file.readline().strip()
+#with open('secret.cfg') as file:
+#   secret=file.readline()
+#for the purpose of using heroku
+secret=os.environ.get("secret")
+passwd=os.environ.get("passwd")
 
 #db connection
 app = Flask(__name__)

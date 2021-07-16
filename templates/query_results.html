@@ -5,8 +5,8 @@
     <title>Query results</title>
 </head>
 <body>
-<a href="/">feed</a> | <a href="/profile/{{ user_id }}">your profile</a> | <a href="/logout">logout</a>|
-    <form action='/search' method="GET"><input name='query' value="@login-search user, #tag-search tag, else search title"><input type="submit" value="search"></form>|<br><br>
+<a href="/">feed</a> | <a href="/profile/{{ user_id }}">your profile</a> | <a href="/logout">logout</a>|<a href="/add_post">Create post</a>|<a href="/delete_account/{{ user_id }}">Delete Account</a>|
+    <form action='/search' method="GET"><input name='query' value="@login-search user, #tag-search tag, else search title"><input type="submit" value="search"></form><br><br>
     <h3>Query results:</h3>
     {% for element in lst %}
         {% if element.tags is defined %}

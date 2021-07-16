@@ -5,8 +5,8 @@
     <title>Posts of @{{ login }}</title>
 </head>
 <body>
-<a href="/">feed</a> | <a href="/profile/{{ user_id }}">your profile</a> | <a href="/logout">logout</a>|
-    <form action='/search' method="GET"><input name='query' value="@login-search user, #tag-search tag, else search title"><input type="submit" value="search"></form>|<br><br>
+<a href="/">feed</a> | <a href="/profile/{{ user_id }}">your profile</a> | <a href="/logout">logout</a>|<a href="/add_post">Create post</a>|<a href="/delete_account/{{ user_id }}">Delete Account</a>|
+    <form action='/search' method="GET"><input name='query' value="@login-search user, #tag-search tag, else search title"><input type="submit" value="search"></form><br><br>
     Posts of @{{ login }}:<br><br>
     {% for post in lst %}
         <a href="/view_post/{{ post._id }}">{{ post.title }}<br><br></a>

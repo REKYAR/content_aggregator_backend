@@ -15,12 +15,16 @@ from bson.objectid import ObjectId
 import re
 import calendar
 import time
+import os
 
 #loading config
-with open('base.cfg') as file:
-    passwd=file.readline().strip()
-with open('secret.cfg') as file:
-    secret=file.readline()
+#with open('base.cfg') as file:
+#    passwd=file.readline().strip()
+#with open('secret.cfg') as file:
+#   secret=file.readline()
+#for the purpose of using heroku
+secret=os.environ.get("secret")
+passwd=os.environ.get("passwd")
 
 #db connection
 app = Flask(__name__)
@@ -362,7 +366,7 @@ def login():
 @app.route('/create_account',methods=['POST','GET'])
 def create_account():
     if request.method=='GET':
-        return render_template('register.html', title='Log in:', user_id=session['login']['login'])
+        return render_template('register.html', title='Register:')
     else:
         #print(request.form)
         #print(request.files)
@@ -444,7 +448,7 @@ def feed():
             os.remove(path.join(app.root_path,app.config['DOWNLOAD_FOLDER'], element))
     fresh_posts = list(posts.find())
     if len(fresh_posts)<10:
-        return render_template('newest.html', new_posts=fresh_posts)
+        return render_template('newest.html', new_posts=fresh_posts,  user_id=session['login']['login'])
     else:
         return render_template('newest.html', new_posts = fresh_posts[-10:],  user_id=session['login']['login'])
 

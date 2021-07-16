@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<a href="/">feed</a> | <a href="/profile/{{ user_id }}">your profile</a> | <a href="/logout">logout</a>|
+    <form action='/search' method="GET"><input name='query' value="@login-search user, #tag-search tag, else search title"><input type="submit" value="search"></form>|<br><br>
+<h3>Post {{ title }} by @<a href="/profile/{{ login }}">{{ login }}</a></h3><br><br><br>
+    TAGS:{% for tag in tags %}<a href="/search?query=%23{{ tag }}"> #{{ tag }}</a> {% endfor %}<br><br>
+    {{ text }}<br>
+    {% for image in media %}
+    <img src={{url_for('static', filename=image)}}  width="512" height="512"><br>
+    {% endfor %}
+    <br><br>COMMENTS:
+      <form>
+        <button type="submit" formaction="/add_comment/{{ id }}/-1">Comment</button>
+      </form><br><br>
+    {% for pair in comms %}
+        @<a href="/profile/{{ pair.comment.login }}">{{ pair.comment.login }}</a> said:<br>
+        {{ pair.comment.content }}<br><br>
+            {% for image in pair.comment.media %}
+            <img src={{url_for('static', filename=pair.comment.media[image])}}  width="512" height="512"><br>
+            {% endfor %}
+        <a href="/thread/{{ id }}/{{ pair.com_id }}">Continue this discussion</a><br><br>
+    {% endfor %}
+
+
+
+</body>
+</html>

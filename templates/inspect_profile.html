@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>inspect profile</title>
+</head>
+<body>
+<a href="/">feed</a> | <a href="/profile/{{ user_id }}">your profile</a> | <a href="/logout">logout</a>|
+    <form action='/search' method="GET"><input name='query' value="@login-search user, #tag-search tag, else search title"><input type="submit" value="search"></form>|<br><br>
+    <h2>@{{ Login }}</h2><br>
+
+    <img src={{url_for('static', filename=Filename)}}  width="512" height="512"><br>
+    {{ Description }}<br>
+    <a href="/posts/{{ Login }}">User's posts</a><br>
+    <a href="/comments/{{ Login }}">User's comments</a>
+
+
+</body>
+</html>

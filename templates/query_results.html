@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Query results</title>
+</head>
+<body>
+<a href="/">feed</a> | <a href="/profile/{{ user_id }}">your profile</a> | <a href="/logout">logout</a>|
+    <form action='/search' method="GET"><input name='query' value="@login-search user, #tag-search tag, else search title"><input type="submit" value="search"></form>|<br><br>
+    <h3>Query results:</h3>
+    {% for element in lst %}
+        {% if element.tags is defined %}
+         <a href="/view_post/{{ element._id }}">@{{ element.title }}</a> by  <a href="/profile/{{ element.login }}">@{{ element.login }}</a><br>
+        {% else %}
+        <a href="/profile/{{ element.login }}">@{{ element.login }}</a><br>
+        {% endif %}
+
+    {% endfor %}
+</body>
+</html>

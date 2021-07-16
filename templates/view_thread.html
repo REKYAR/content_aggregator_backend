@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<a href="/">feed</a> | <a href="/profile/{{ user_id }}">your profile</a> | <a href="/logout">logout</a>|
+    <form action='/search' method="GET"><input name='query' value="@login-search user, #tag-search tag, else search title"><input type="submit" value="search"></form>|<br><br>
+<h3>Post {{ title }} by @<a href="/profile/{{ login }}">{{ login }}</a></h3><br><br><br>
+    TAGS:{% for tag in tags %}<a href="/search/#{{ tag }}"> #{{ tag }}</a> {% endfor %}<br><br>
+    {{ text }}<br>
+    {% for image in media %}
+    <img src={{url_for('static', filename=image)}}  width="512" height="512"><br>
+    {% endfor %}<br>
+    <a href="/view_post/{{ id }}">return to post</a><br>
+    <br><br>COMMENTS:
+      <br><br>
+    {% for comment in comms %}
+        {% set indent = comment.depth |int %}
+        {% set indent = indent*20 %}
+        <div style="margin-left: {{ indent }}px">
+        @<a href="/profile/{{ comment.login }}">{{ comment.login }}</a> said:<br>
+        {{ comment.content }}<br><br>
+            {% for image in comment.media %}
+            <img src={{url_for('static', filename=comment.media[image])}}  width="512" height="512"><br>
+            {% endfor %}
+        <br>
+        <form>
+        <button type="submit" formaction="/add_comment/{{ id }}/{{ comment._id }}">Reply</button>
+        </form><br><br>
+        </div>
+    {% endfor %}
+
+
+
+</body>
+</html>

@@ -8,9 +8,6 @@
 <link rel='stylesheet' type='text/css' media='screen'>
 </head>
 <body>
-<a href="/">feed</a> | <a href="/profile/{{ user_id }}">your profile</a> | <a href="/logout">logout</a>|<a href="/add_post">Create post</a>|<a href="/delete_account/{{ user_id }}">Delete Account</a>|
-    <form action='/search' method="GET"><input name='query' value="@login-search user, #tag-search tag, else search title"><input type="submit" value="search"></form><br><br>
-<br>
 No account? <a href="/create_account">Register!</a>
 <br><br>
 <form action='/login' method="POST">
